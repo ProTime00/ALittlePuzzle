@@ -84,10 +84,7 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
-    public void W()
-    {
-        w = true;
-    }
+    public void W() { w = true; }
     public void A() { a = true; }
     public void S() { s = true; }
     public void D() { d = true; }
