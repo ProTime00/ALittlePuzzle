@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class Menu : MonoBehaviour {
 
     public GameObject fadePanelGO;
+    public GameObject resetButton;
 
     private Animator fadePanel;
     AudioSource optionSelectClick;
@@ -14,6 +15,11 @@ public class Menu : MonoBehaviour {
         {
             PlayerPrefs.SetInt("level", 1);
             PlayerPrefs.Save();
+        }
+
+        if (PlayerPrefs.GetInt("level") == 1)
+        {
+            resetButton.SetActive(false);
         }
         optionSelectClick = GetComponent<AudioSource>();
     }
@@ -34,5 +40,12 @@ public class Menu : MonoBehaviour {
         fadePanel.enabled = true;
         yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene(PlayerPrefs.GetInt("level"));
+    }
+
+    public void ResetSave()
+    {
+        PlayerPrefs.SetInt("level", 1);
+        PlayerPrefs.Save();
+        SceneManager.LoadScene(0);
     }
 }
