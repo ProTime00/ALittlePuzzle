@@ -1,9 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour {
 
+    //hints
+    public static PlayerMovement i;
+    private GameObject hint;
+    
+    //movement
     public Rigidbody playerRB;
     public GameManager gameManager;
     public GameObject wallGO;
@@ -21,6 +28,17 @@ public class PlayerMovement : MonoBehaviour {
     private bool a;
     private bool s;
     private bool d;
+
+    private void Awake()
+    {
+        i = this;
+        hint = GameObject.FindWithTag("hint");
+        if (hint is null)
+        {
+            return;
+        }
+        hint.SetActive(false);
+    }
 
     private void Start()
     {
@@ -173,4 +191,28 @@ public class PlayerMovement : MonoBehaviour {
         isTumbling = false;
     }
     
+    //Ads
+
+    public void StartHintAds()
+    {
+        AdsManager.i.LoadRewardedAd("hint");
+    }
+
+    public void ShowHint()
+    {
+        if (hint is null)
+        {
+            return;
+        }
+        hint.SetActive(true);
+    }
+
+    private void OnDestroy()
+    {
+        if (hint is null)
+        {
+            return;
+        }
+        hint.SetActive(false);
+    }
 }

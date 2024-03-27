@@ -84,7 +84,10 @@ public class AdsManager : MonoBehaviour, IUnityAdsShowListener, IUnityAdsLoadLis
 
         private void HandleReward(string rewardType)
         {
-            
+            if (rewardType == "hint")
+            {
+                PlayerMovement.i.ShowHint();
+            }
         }
 
         public void OnUnityAdsAdLoaded(string placementId)
