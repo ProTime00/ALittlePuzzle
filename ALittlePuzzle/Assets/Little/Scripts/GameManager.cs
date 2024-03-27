@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Net;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -95,7 +94,10 @@ public class GameManager : MonoBehaviour {
             SceneManager.LoadScene(currSceneName);
         }
         else if (state == "NextLevel") {
+            PlayerPrefs.SetInt("level", SceneManager.GetActiveScene().buildIndex + 1);
+            PlayerPrefs.Save();
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            
         }
         else if (state == "BackToMenu") {
             SceneManager.LoadScene(0);

@@ -120,8 +120,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4160926970930614737, guid: 2eee376bd86dced49b5453ece83cbc95,
-          type: 3}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
         m_MethodName: S
         m_Mode: 1
@@ -253,8 +252,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4160926970930614737, guid: 2eee376bd86dced49b5453ece83cbc95,
-          type: 3}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
         m_MethodName: D
         m_Mode: 1
@@ -386,8 +384,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4160926970930614737, guid: 2eee376bd86dced49b5453ece83cbc95,
-          type: 3}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
         m_MethodName: A
         m_Mode: 1
@@ -556,7 +553,7 @@ RectTransform:
   m_GameObject: {fileID: 9165256802232645358}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.8, y: 1.8, z: 1.8}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3079078734887910635}

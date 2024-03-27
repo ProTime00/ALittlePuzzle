@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine;
-using System.Runtime.CompilerServices;
 
 public class ControlsScreen : MonoBehaviour {
 

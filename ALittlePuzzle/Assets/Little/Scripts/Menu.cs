@@ -1,8 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class Menu : MonoBehaviour {
 
@@ -12,6 +10,11 @@ public class Menu : MonoBehaviour {
     AudioSource optionSelectClick;
 
     private void Start() {
+        if (!PlayerPrefs.HasKey("level"))
+        {
+            PlayerPrefs.SetInt("level", 1);
+            PlayerPrefs.Save();
+        }
         optionSelectClick = GetComponent<AudioSource>();
     }
 
@@ -30,6 +33,6 @@ public class Menu : MonoBehaviour {
     IEnumerator startgameCo() {
         fadePanel.enabled = true;
         yield return new WaitForSeconds(1.5f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(PlayerPrefs.GetInt("level"));
     }
 }
