@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour {
 
     //hints
     public static PlayerMovement i;
-    private GameObject hint;
+    private GameObject[] _hints;
     
     //movement
     public Rigidbody playerRB;
@@ -34,12 +34,16 @@ public class PlayerMovement : MonoBehaviour {
     private void Awake()
     {
         i = this;
-        hint = GameObject.FindWithTag("hint");
-        if (hint is null)
+        _hints = GameObject.FindGameObjectsWithTag("hint");
+        if (_hints.Length == 0)
         {
             return;
         }
-        hint.SetActive(false);
+
+        foreach (var variable in _hints)
+        {
+            variable.SetActive(false);
+        }
     }
 
     private void Start()
@@ -254,24 +258,18 @@ public class PlayerMovement : MonoBehaviour {
 
     public void StartHintAds()
     {
-        AdsManager.I.LoadRewardedAd("hint");
+        if (AdsManager.I != null) AdsManager.I.LoadRewardedAd("hint");
     }
 
     public void ShowHint()
     {
-        if (hint is null)
+        if (_hints.Length == 0)
         {
             return;
         }
-        hint.SetActive(true);
-    }
-
-    private void OnDestroy()
-    {
-        if (hint is null)
+        foreach (var variable in _hints)
         {
-            return;
+            variable.SetActive(true);
         }
-        hint.SetActive(false);
     }
 }
