@@ -7,25 +7,26 @@ using UnityEngine.SceneManagement;
 public class AdsManager : MonoBehaviour, IUnityAdsShowListener, IUnityAdsLoadListener, IUnityAdsInitializationListener
     {
 #if UNITY_IOS
-        private const string GameId = "5430640";
+        private const string GameId = "5585042";
         private const string Ad = "Interstitial_iOS";
         private const string RewardAd = "Rewarded_iOS";
-        private const bool TestMode = true;
 
 #elif UNITY_ANDROID
-    private const string GameId = "5430641";
+    private const string GameId = "5585043";
     private const string Ad = "Interstitial_Android";
     private const string RewardAd = "Rewarded_Android";
 #endif
-        public static AdsManager i;
+        
+        private const bool TestMode = false;
+        public static AdsManager I;
         private void Awake()
         {
-            if (i is not null)
+            if (I is not null)
             {
                 Destroy(gameObject);
             }
 
-            i = this;
+            I = this;
             Advertisement.Initialize(GameId, TestMode, this);
             DontDestroyOnLoad(gameObject);
         }

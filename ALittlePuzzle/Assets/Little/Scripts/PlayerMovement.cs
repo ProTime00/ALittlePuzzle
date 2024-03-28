@@ -21,13 +21,15 @@ public class PlayerMovement : MonoBehaviour {
     bool canSlide = true;
     bool isTumbling = false;
     private Vector3 lastDir;
-    private Queue<IEnumerator> slideroutineQueue = new Queue<IEnumerator>();
+    private Queue<IEnumerator> slideroutineQueue = new();
     private BoxCollider playerBC;
     AudioSource moveAudio;
     private bool w;
     private bool a;
     private bool s;
     private bool d;
+    private bool isOnIce;
+    
 
     private void Awake()
     {
@@ -98,10 +100,57 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
-    public void W() { w = true; }
-    public void A() { a = true; }
-    public void S() { s = true; }
-    public void D() { d = true; }
+    public void W()
+    {
+        if (w || a || s || d)
+        {
+            return;
+        }
+        if (isOnIce)
+        {
+            return;
+        }
+        w = true;
+    }
+
+    public void A()
+    {
+        if (w || a || s || d)
+        {
+            return;
+        }
+        if (isOnIce)
+        {
+            return;
+        }
+        a = true;
+    }
+
+    public void S()
+    {
+        if (w || a || s || d)
+        {
+            return;
+        }
+        if (isOnIce)
+        {
+            return;
+        }
+        s = true;
+    }
+
+    public void D()
+    {
+        if (w || a || s || d)
+        {
+            return;
+        }
+        if (isOnIce)
+        {
+            return;
+        }
+        d = true;
+    }
 
 
     private void checkBeneath() {
@@ -109,7 +158,17 @@ public class PlayerMovement : MonoBehaviour {
         RaycastHit hitInfo;
 
         if(Physics.Raycast(ray, out hitInfo, 1) && hitInfo.distance < 1) {
-            Debug.DrawLine(ray.origin, hitInfo.point, Color.red);
+            //Debug.DrawLine(ray.origin, hitInfo.point, Color.red);
+            
+            // what is actually tagged as player is the base cube of a bloc, that is for some reason detected in between two blocs.
+            if ((hitInfo.collider.gameObject.CompareTag("ice") && playerRB.velocity != Vector3.zero)|| hitInfo.collider.gameObject.CompareTag("Player"))
+            {
+                isOnIce = true;
+            }
+            else
+            {
+                isOnIce = false;
+            }
         }
         else {
             canMove = false;
@@ -195,7 +254,7 @@ public class PlayerMovement : MonoBehaviour {
 
     public void StartHintAds()
     {
-        AdsManager.i.LoadRewardedAd("hint");
+        AdsManager.I.LoadRewardedAd("hint");
     }
 
     public void ShowHint()

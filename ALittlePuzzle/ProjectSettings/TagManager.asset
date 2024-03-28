@@ -9,6 +9,7 @@ TagManager:
   - Button
   - menuInLevel
   - hint
+  - ice
   layers:
   - Default
   - TransparentFX
