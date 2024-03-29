@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour {
@@ -9,6 +10,7 @@ public class PlayerMovement : MonoBehaviour {
     //hints
     public static PlayerMovement i;
     private GameObject[] _hints;
+    private string _currentSceneBuildIndex;
     
     //movement
     public Rigidbody playerRB;
@@ -39,10 +41,15 @@ public class PlayerMovement : MonoBehaviour {
         {
             return;
         }
+        
+        _currentSceneBuildIndex = SceneManager.GetActiveScene().buildIndex.ToString();
 
-        foreach (var variable in _hints)
+        if (!PlayerPrefs.HasKey(_currentSceneBuildIndex))
         {
-            variable.SetActive(false);
+            foreach (var variable in _hints)
+            {
+                variable.SetActive(false);
+            }
         }
     }
 
@@ -258,7 +265,19 @@ public class PlayerMovement : MonoBehaviour {
 
     public void StartHintAds()
     {
-        if (AdsManager.I != null) AdsManager.I.LoadRewardedAd("hint");
+        if (PlayerPrefs.HasKey(_currentSceneBuildIndex))
+        {
+            return;
+        }
+        if (AdsManager.I != null)
+        {
+            AdsManager.I.LoadRewardedAd("hint");
+        }
+        else
+        {
+            ShowHint();
+            Debug.Log("remember to remove this part, to prevent showing the hints without the ad");
+        }
     }
 
     public void ShowHint()
@@ -267,6 +286,8 @@ public class PlayerMovement : MonoBehaviour {
         {
             return;
         }
+        PlayerPrefs.SetString(_currentSceneBuildIndex, "hint unlocked");
+        PlayerPrefs.Save();
         foreach (var variable in _hints)
         {
             variable.SetActive(true);

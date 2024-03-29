@@ -16,7 +16,8 @@ public class AdsManager : MonoBehaviour, IUnityAdsShowListener, IUnityAdsLoadLis
     private const string Ad = "Interstitial_Android";
     private const string RewardAd = "Rewarded_Android";
 #endif
-        
+
+        private bool _adRequested;
         private const bool TestMode = false;
         public static AdsManager I;
         private void Awake()
@@ -45,15 +46,16 @@ public class AdsManager : MonoBehaviour, IUnityAdsShowListener, IUnityAdsLoadLis
         // This function is intended to be une on a button
         public void LoadRewardedAd(string rewardType)
         {
+            RewardType = rewardType;
             if (!Advertisement.isInitialized)
             {
                 Advertisement.Initialize(GameId, TestMode, this);
+                _adRequested = true;
                 return;
             }
             if (Advertisement.isInitialized)
             {
                 Advertisement.Load(RewardAd, this);
-                RewardType = rewardType;
             }
             //launch load animation on button
         }
@@ -105,6 +107,11 @@ public class AdsManager : MonoBehaviour, IUnityAdsShowListener, IUnityAdsLoadLis
         public void OnInitializationComplete()
         {
             Debug.Log("initialization complete");
+            if (_adRequested)
+            {
+                _adRequested = false;
+                LoadRewardedAd(RewardType);
+            }
         }
 
         public void OnInitializationFailed(UnityAdsInitializationError error, string message)
