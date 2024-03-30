@@ -11,6 +11,10 @@ public class PlayerMovement : MonoBehaviour {
     public static PlayerMovement i;
     private GameObject[] _hints;
     private string _currentSceneBuildIndex;
+    private GameObject _failedToLoadAd;
+    private GameObject _AdBanner;
+    
+    private GameObject _Thanks;
     
     //movement
     public Rigidbody playerRB;
@@ -31,11 +35,20 @@ public class PlayerMovement : MonoBehaviour {
     private bool s;
     private bool d;
     private bool isOnIce;
-    
+
 
     private void Awake()
     {
         i = this;
+        if (SceneManager.GetActiveScene().buildIndex == SceneManager.sceneCountInBuildSettings - 1)
+        {
+            return;
+        }
+        _failedToLoadAd = GameObject.FindWithTag("failedToLoadAd");
+        _AdBanner = GameObject.FindWithTag("Finish");
+        _Thanks = GameObject.FindWithTag("Respawn");
+        _Thanks.SetActive(false);
+        _failedToLoadAd.SetActive(false);
         _hints = GameObject.FindGameObjectsWithTag("hint");
         if (_hints.Length == 0)
         {
@@ -50,6 +63,10 @@ public class PlayerMovement : MonoBehaviour {
             {
                 variable.SetActive(false);
             }
+        }
+        else
+        {
+            _AdBanner.SetActive(false);
         }
     }
 
@@ -269,19 +286,22 @@ public class PlayerMovement : MonoBehaviour {
         {
             return;
         }
-        if (AdsManager.I != null)
+        if (AdsManager.I is not null)
         {
             AdsManager.I.LoadRewardedAd("hint");
         }
         else
         {
-            ShowHint();
-            Debug.Log("remember to remove this part, to prevent showing the hints without the ad");
+            _AdBanner.SetActive(false);
+            _failedToLoadAd.SetActive(true);
+            Debug.Log("failed because AdsManager has never been initialised (you need to run MainMenu to load it BEFORE going into any other scene).");
         }
     }
 
     public void ShowHint()
     {
+        _AdBanner.SetActive(false);
+        _Thanks.SetActive(true);
         if (_hints.Length == 0)
         {
             return;
@@ -292,5 +312,11 @@ public class PlayerMovement : MonoBehaviour {
         {
             variable.SetActive(true);
         }
+    }
+
+    public void ShowFailLoadAdMessage()
+    {
+        _failedToLoadAd.SetActive(true);
+        _AdBanner.SetActive(false);
     }
 }

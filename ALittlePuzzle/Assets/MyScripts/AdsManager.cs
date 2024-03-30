@@ -20,6 +20,8 @@ public class AdsManager : MonoBehaviour, IUnityAdsShowListener, IUnityAdsLoadLis
         private bool _adRequested;
         private const bool TestMode = false;
         public static AdsManager I;
+
+
         private void Awake()
         {
             if (I is not null)
@@ -28,6 +30,7 @@ public class AdsManager : MonoBehaviour, IUnityAdsShowListener, IUnityAdsLoadLis
             }
 
             I = this;
+            
             Advertisement.Initialize(GameId, TestMode, this);
             DontDestroyOnLoad(gameObject);
         }
@@ -43,7 +46,7 @@ public class AdsManager : MonoBehaviour, IUnityAdsShowListener, IUnityAdsLoadLis
         }
         
         
-        // This function is intended to be une on a button
+        // This function is intended to be use on a button
         public void LoadRewardedAd(string rewardType)
         {
             RewardType = rewardType;
@@ -67,12 +70,12 @@ public class AdsManager : MonoBehaviour, IUnityAdsShowListener, IUnityAdsLoadLis
 
         public void OnUnityAdsShowStart(string placementId)
         {
-            //remove the load animation
+            
         }
 
         public void OnUnityAdsShowClick(string placementId)
         {
-            Debug.Log("clicked on the ad");
+            
         }
 
         public void OnUnityAdsShowComplete(string placementId, UnityAdsShowCompletionState showCompletionState)
@@ -100,7 +103,7 @@ public class AdsManager : MonoBehaviour, IUnityAdsShowListener, IUnityAdsLoadLis
 
         public void OnUnityAdsFailedToLoad(string placementId, UnityAdsLoadError error, string message)
         {
-        
+            PlayerMovement.i.ShowFailLoadAdMessage();
             Debug.Log("Failed to load" + $"[[{placementId} | {error} | {message}]]");
         }
 

@@ -10,6 +10,7 @@ TagManager:
   - menuInLevel
   - hint
   - ice
+  - failedToLoadAd
   layers:
   - Default
   - TransparentFX

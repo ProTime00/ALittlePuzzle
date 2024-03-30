@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3265660341387123996}
   m_Layer: 0
-  m_Name: ArrowHint
+  m_Name: ArrowHintYellow
   m_TagString: hint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94,7 +94,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2143194e8e3704ac182e6f5fc0ce3ff9, type: 2}
+  - {fileID: 2100000, guid: 67296c2321fbb4d1891f36894ccd73f7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -177,7 +177,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2143194e8e3704ac182e6f5fc0ce3ff9, type: 2}
+  - {fileID: 2100000, guid: 67296c2321fbb4d1891f36894ccd73f7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

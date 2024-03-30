@@ -44,11 +44,8 @@ public class Menu : MonoBehaviour {
 
     public void ResetSave()
     {
+        PlayerPrefs.DeleteAll();
         PlayerPrefs.SetInt("level", 1);
-        for (int i = 1; i < SceneManager.sceneCount; i++)
-        {
-            PlayerPrefs.DeleteKey(i.ToString());
-        }
         PlayerPrefs.Save();
         SceneManager.LoadScene(0);
     }
