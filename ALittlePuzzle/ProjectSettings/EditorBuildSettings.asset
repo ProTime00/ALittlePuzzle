@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Little/Scenes/Level01.unity
     guid: 2e6d1b69c358c46b889ae4a306d4e6e1
+  - enabled: 0
+    path: Assets/Little/Scenes/TEST.unity
+    guid: 721e0e71da5014ae99ab68f93ec55aa1
   - enabled: 1
     path: Assets/Little/Scenes/Level02.unity
     guid: b934277b2e7d2c04a9b0a276dc781d77
