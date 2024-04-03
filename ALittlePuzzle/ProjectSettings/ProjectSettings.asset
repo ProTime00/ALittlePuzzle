@@ -139,7 +139,7 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
-  bundleVersion: 1.0
+  bundleVersion: 1.1
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -167,10 +167,10 @@ PlayerSettings:
   buildNumber:
     Standalone: 0
     VisionOS: 0
-    iPhone: 1
+    iPhone: 2
     tvOS: 0
   overrideDefaultApplicationIdentifier: 1
-  AndroidBundleVersionCode: 1
+  AndroidBundleVersionCode: 2
   AndroidMinSdkVersion: 22
   AndroidTargetSdkVersion: 33
   AndroidPreferredInstallLocation: 1
@@ -212,7 +212,7 @@ PlayerSettings:
   iOSLaunchScreenType: 4
   iOSLaunchScreenPortrait: {fileID: 2800000, guid: 2c371128c8a767a4f9287bde0c36db00,
     type: 3}
-  iOSLaunchScreenLandscape: {fileID: 2800000, guid: 1eadcfa9601fb1846b7dde290d9c2e0c,
+  iOSLaunchScreenLandscape: {fileID: 2800000, guid: 62d73328e7c344e91bba1bcf9ba28997,
     type: 3}
   iOSLaunchScreenBackgroundColor:
     serializedVersion: 2
@@ -266,7 +266,7 @@ PlayerSettings:
   AndroidTargetArchitectures: 3
   AndroidTargetDevices: 0
   AndroidSplashScreenScale: 0
-  androidSplashScreen: {fileID: 0}
+  androidSplashScreen: {fileID: 2800000, guid: 62d73328e7c344e91bba1bcf9ba28997, type: 3}
   AndroidKeystoreName: '{inproject}: user.keystore'
   AndroidKeyaliasName: it's about cubes
   AndroidEnableArmv9SecurityFeatures: 0
