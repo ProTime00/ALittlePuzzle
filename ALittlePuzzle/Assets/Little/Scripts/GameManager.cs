@@ -2,8 +2,11 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
 
+    public bool levelIsWithoutSwitch;
+    
     private GameObject[] fallingGround;
     private bool keyCollected = false;
 
@@ -77,6 +80,10 @@ public class GameManager : MonoBehaviour {
     }
 
     IEnumerator wallAnimation() {
+        if (levelIsWithoutSwitch)
+        {
+            yield return new WaitForSeconds(1f);
+        }
         wallAnim = wallGO.GetComponent<Animator>();
         wallAnim.enabled = true;
         upWallsAnim.enabled = true;
@@ -94,7 +101,7 @@ public class GameManager : MonoBehaviour {
             SceneManager.LoadScene(currSceneName);
         }
         else if (state == "NextLevel") {
-            PlayerPrefs.SetInt("level", SceneManager.GetActiveScene().buildIndex + 1);
+            PlayerPrefs.SetInt(currentScene.buildIndex.ToString(), 1);
             PlayerPrefs.Save();
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             

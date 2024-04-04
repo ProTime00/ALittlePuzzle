@@ -57,7 +57,7 @@ public class PlayerMovement : MonoBehaviour {
         
         _currentSceneBuildIndex = SceneManager.GetActiveScene().buildIndex.ToString();
 
-        if (!PlayerPrefs.HasKey(_currentSceneBuildIndex))
+        if (!PlayerPrefs.HasKey($"{_currentSceneBuildIndex}p"))
         {
             foreach (var variable in _hints)
             {
@@ -282,7 +282,7 @@ public class PlayerMovement : MonoBehaviour {
 
     public void StartHintAds()
     {
-        if (PlayerPrefs.HasKey(_currentSceneBuildIndex))
+        if (PlayerPrefs.HasKey($"{_currentSceneBuildIndex}p"))
         {
             return;
         }
@@ -306,7 +306,7 @@ public class PlayerMovement : MonoBehaviour {
         {
             return;
         }
-        PlayerPrefs.SetString(_currentSceneBuildIndex, "hint unlocked");
+        PlayerPrefs.SetString($"{_currentSceneBuildIndex}p", "hint unlocked");
         PlayerPrefs.Save();
         foreach (var variable in _hints)
         {
